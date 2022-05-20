@@ -1,0 +1,4 @@
+package companyA;
+
+class FactoryWorker {
+}
