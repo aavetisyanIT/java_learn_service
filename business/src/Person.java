@@ -1,5 +1,11 @@
+import java.util.Date;
+
 public class Person {
 
+    private String firstName;
+    private static String middleName;
+
+    private Date dob;
     public static int[] fetchedData;
 
     static {
@@ -10,7 +16,6 @@ public class Person {
     }
 
     public static double PI = 3.14;
-    static String middleName = "Ethan";
 
     static char getMiddleName() {
         return middleName.charAt(0);
