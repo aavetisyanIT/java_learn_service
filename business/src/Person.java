@@ -1,5 +1,14 @@
 public class Person {
 
+    public static int[] fetchedData;
+
+    static {
+        fetchedData = new int[3];
+        fetchedData[0] = 1;
+        fetchedData[1] = 2;
+        fetchedData[2] = 3;
+    }
+
     public static double PI = 3.14;
     static String middleName = "Ethan";
 
