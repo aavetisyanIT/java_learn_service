@@ -35,14 +35,10 @@ public class Person {
 
     public static void main(String[] args) {
         Person p1 = new Person();
-//        p1.sayHello();
-//        p1.printMessage("Hello Artur");
         char middleInitial = getMiddleName();
-//        System.out.println(middleInitial);
         int sum = add(3, 9);
         int sum2 = add(1, 11);
         System.out.println(sum);
-        //PI = 2;
         System.out.println(PI);
         p1.test1(1, 2, "firstName", "lastName");
     }
