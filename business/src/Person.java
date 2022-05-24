@@ -1,13 +1,14 @@
 public class Person {
 
-    private String middleName = "Ethan";
+    public static double PI = 3.14;
+    static String middleName = "Ethan";
 
-    public char getMiddleName() {
+    static char getMiddleName() {
         return middleName.charAt(0);
     }
 
     static void sayHello() {
-        System.out.println("Hello there!");
+        System.out.println("Hello there!!");
     }
 
     static void printMessage(String message) {
@@ -18,13 +19,22 @@ public class Person {
         return num1 + num2;
     }
 
+
+    public void test1(int num1, int num2, String... names) {
+        //some code
+    }
+
     public static void main(String[] args) {
         Person p1 = new Person();
 //        p1.sayHello();
 //        p1.printMessage("Hello Artur");
-        char middleInitial = p1.getMiddleName();
+        char middleInitial = getMiddleName();
 //        System.out.println(middleInitial);
-        int sum = p1.add(3, 9);
+        int sum = add(3, 9);
+        int sum2 = add(1, 11);
         System.out.println(sum);
+        //PI = 2;
+        System.out.println(PI);
+        p1.test1(1, 2, "firstName", "lastName");
     }
 }
