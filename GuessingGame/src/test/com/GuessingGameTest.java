@@ -27,6 +27,7 @@ public class GuessingGameTest {
     public void testRandomNumberGeneration () {
         int[] rndNumMap = new int[10];
         for(int i = 1; i <= 100; i++) {
+            GuessingGame game = new GuessingGame();
             int randomNum = game.generateRandomNum();
             rndNumMap[randomNum-1] = 1;
         }
