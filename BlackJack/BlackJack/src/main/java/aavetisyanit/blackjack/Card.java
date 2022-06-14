@@ -9,24 +9,30 @@ public class Card {
         this.rank = rank;
     }
 
-    public Suit getSuit() {
-        return suit;
+    public static void main(String[] args) {
+        Card card1 = new Card(Suit.CLUBS, Rank.ACE);
+        System.out.println(card1);
     }
 
-    public Rank getRank() {
-        return rank;
+    @Override
+    public String toString() {
+        return suit.toString().concat(" ").concat(rank.toString());
+    }
+
+    public Suit getSuit() {
+        return suit;
     }
 
     public void setSuit(Suit suit) {
         this.suit = suit;
     }
 
-    public void setRank(Rank rank) {
-        this.rank = rank;
+    public Rank getRank() {
+        return rank;
     }
 
-    public static void main(String[] args) {
-        Card card1 = new Card(Suit.CLUBS, Rank.TWO);
+    public void setRank(Rank rank) {
+        this.rank = rank;
     }
 
     public int getValue() {
