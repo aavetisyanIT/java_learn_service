@@ -29,4 +29,7 @@ public class Card {
         Card card1 = new Card(Suit.CLUBS, Rank.TWO);
     }
 
+    public int getValue() {
+        return rank.getValue();
+    }
 }
