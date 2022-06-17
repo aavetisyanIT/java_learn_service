@@ -23,12 +23,15 @@ public class Main {
                 Rubble, Betty, 4/4/1915, CEO
                 """;
 
-        String peopleRegex = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)\\})?\\n";
+        String peopleRegex = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)})?\\n";
         Pattern peoplePat = Pattern.compile(peopleRegex);
         Matcher peopleMat = peoplePat.matcher(peopleText);
 
-        String progRegex = "\\w+\\=(?<locpd>\\w+)\\,\\w+\\=(?<yoe>\\w+)\\,\\w+\\=(?<iq>\\w+)";
+        String progRegex = "\\w+=(?<locpd>\\w+),\\w+=(?<yoe>\\w+),\\w+=(?<iq>\\w+)";
         Pattern coderPat = Pattern.compile(progRegex);
+
+        String managerRegex = "\\w+=(?<orgSize>\\w+),\\w+=(?<dr>\\w+)";
+        Pattern managerPat = Pattern.compile(managerRegex);
 
         int totalSalaries = 0;
         while (peopleMat.find()) {
@@ -37,13 +40,27 @@ public class Main {
                     String details = peopleMat.group("details");
                     Matcher coderMat = coderPat.matcher(details);
                     if (coderMat.find()) {
-                        Object[] objects = {coderMat.group("locpd"), coderMat.group("yoe"), coderMat.group("iq")};
-                        System.out.printf("Programmer loc: %s, yoe: %s, iq: " +
-                                "%s%n", objects);
+                        int locpd = Integer.parseInt(coderMat.group("locpd"));
+                        int yoe = Integer.parseInt(coderMat.group("yoe"));
+                        int iq = Integer.parseInt(coderMat.group("iq"));
+                        yield 3000 + locpd * yoe * iq;
+                    } else {
+                        yield 3000;
                     }
-                    yield 3000;
                 }
-                case "Manager" -> 3500;
+                case "Manager" -> {
+                    String details = peopleMat.group("details");
+                    Matcher managerMat = managerPat.matcher(details);
+                    if (managerMat.find()) {
+                        int orgSize = Integer.parseInt(managerMat.group("orgSize"));
+                        int dr = Integer.parseInt(managerMat.group("dr"));
+                        yield 3000 + orgSize * dr;
+
+                    } else {
+                        yield 3000;
+
+                    }
+                }
                 case "Analyst" -> 2500;
                 case "CEO" -> 5000;
                 default -> 0;
