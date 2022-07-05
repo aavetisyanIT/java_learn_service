@@ -14,33 +14,17 @@ public class Main {
         Pattern peoplePat = Pattern.compile(peopleRegex);
         Matcher peopleMat = peoplePat.matcher(data.getData());
 
-        String managerRegex = "\\w+=(?<orgSize>\\w+),\\w+=(?<dr>\\w+)";
-        Pattern managerPat = Pattern.compile(managerRegex);
-
         int totalSalaries = 0;
+        Employee employee;
         while (peopleMat.find()) {
-            totalSalaries += switch (peopleMat.group("role")) {
-                case "Programmer" -> {
-                    Programmer programmer = new Programmer(peopleMat.group());
-                    yield programmer.getSalary();
-                }
-                case "Manager" -> {
-                    String details = peopleMat.group("details");
-                    Matcher managerMat = managerPat.matcher(details);
-                    if (managerMat.find()) {
-                        int orgSize = Integer.parseInt(managerMat.group("orgSize"));
-                        int dr = Integer.parseInt(managerMat.group("dr"));
-                        yield 3000 + orgSize * dr;
-
-                    } else {
-                        yield 3000;
-
-                    }
-                }
-                case "Analyst" -> 2500;
-                case "CEO" -> 5000;
-                default -> 0;
+            employee = switch (peopleMat.group("role")) {
+                case "Programmer" -> new Programmer(peopleMat.group());
+                case "Manager" -> new Manager();
+                case "Analyst" -> new Analyst();
+                case "CEO" -> new CEO();
+                default -> null;
             };
+            totalSalaries += employee.getSalary();
         }
         NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
         System.out.printf("the total payout should be %s%n", currencyInstance.format(totalSalaries));
