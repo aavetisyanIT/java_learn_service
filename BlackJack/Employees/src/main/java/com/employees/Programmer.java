@@ -4,6 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Programmer extends Employee {
+
+    private final String programmerRegex = "\\w+=(?<locpd>\\w+),\\w+=" +
+            "(?<yoe>\\w+),\\w+=" +
+            "(?<iq>\\w+)";
     private final Pattern programmerDetailsPat =
             Pattern.compile(programmerRegex);
     private int iq;

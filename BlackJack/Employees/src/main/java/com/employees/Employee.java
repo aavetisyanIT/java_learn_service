@@ -10,8 +10,7 @@ public class Employee {
     protected final String peopleRegex = "(?<lastName>\\w+),\\s*" +
             "(?<firstName>\\w+),\\s*" +
             "(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)})?\\n";
-    protected final String programmerRegex = "\\w+=(?<locpd>\\w+),\\w+=(?<yoe>\\w+),\\w+=" +
-            "(?<iq>\\w+)";
+
     protected final Matcher peopleMat;
     private final Pattern peoplePat = Pattern.compile(peopleRegex);
     private final DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
