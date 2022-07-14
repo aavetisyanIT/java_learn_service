@@ -24,7 +24,9 @@ public class Main {
                 case "CEO" -> new CEO();
                 default -> null;
             };
-            totalSalaries += employee.getSalary();
+            if (employee != null) {
+                totalSalaries += employee.getSalary();
+            }
         }
         NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
         System.out.printf("the total payout should be %s%n", currencyInstance.format(totalSalaries));

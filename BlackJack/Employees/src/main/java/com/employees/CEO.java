@@ -9,7 +9,7 @@ public class CEO extends Employee {
     private final Pattern ceoPat = Pattern.compile(ceoRegEx);
     private int avgStockPrice;
 
-    public CEO(String peopleText) {
+    public CEO() {
         super(peopleText);
 
         Matcher ceoMatcher = ceoPat.matcher(peopleMat.group("details"));
